@@ -1,0 +1,113 @@
+1、列出常见的整数值比较操作，并说明各自作用。
+-eq 等于（Equal）
+-ne 不等于（Not Equal）
+-ge 大于或等于（Greater or Equal）
+-le 小于或等于（Lesser or Equal）
+-gt 大于（Greater Than）
+-lt 小于（Lesser Than）
+2、dns，dhcp，postfix，apache，tftp等服务的端口，服务名，配置文件，安装的软件包
+DNS:53 ,named,主配置文件:/etc/named.conf,yum -y install bind-chroot bind
+dhcp:67/68, 
+postfix(邮件)：收端口25发110，/etc/postfix/main.cf,
+tftp:69,tftp,/etc/xinetd.d/tftp,tftp,tftp-server,xinetd
+3、bc命令 小数运算
+4、pxe+kickstart 
+5、日志
+6、全局变量与临时变量
+export
+7、自定义 Shell 变量时，变量名有什么规则？
+可以包括数字、字母、下划线，不能以数字开头
+变量名区分大小写
+赋值时等号两边不要有空格
+尽量不要使用关键字和特殊字符
+给同一个变量多次赋值时，最后一次的赋值生效
+8、简述预定义变量$$ 、$? 、$0 、$# 、$* 、$! 的作用。
+$$ 保存当前运行进程的（PID）号
+$? 保存命令执行结果的（返回状态）
+$0 保存当前运行的（进程名）或（脚本名）
+$# 保存位置变量的（个数）
+$* 保存所有位置变量的（值）
+$! 保存后台（最后一个进程）的 PID 号
+9、简述三种定界符在变量赋值操作中的特点。
+10、参考答案
+双引号 " "：允许扩展，以 $ 引用其他变量
+单引号 ' '：禁用扩展，即便 $ 也视为普通字符
+反撇号 ` `：将命令的执行输出作为变量值
+11、systemctl命令的选项
+start激活
+stop停止
+restart重起
+enable开机自起
+disable取消开机自动激活
+status 显示系统状态
+get-default 使更改生效？
+list-units	列出当前系统服务的状态
+list-unit-files	列出所有服务的开机状态
+is-enable		列出某一服务的开机状态
+set-default
+get-default
+list-dependcies sshd(...)      查看指定服务的依赖关系
+systemctl mask sshd(...)     冻结指定服务
+systemctl unmask sshd(...)     启动指定服务
+
+12、chown 修改属主属组 chown zhaung:asd /nsd03
+13、chmod 加权限 chmod ugo=rwx /nsd03
+14、ACL权限  setfacl -m u:zhang:rwx /nsd03
+15、格式化命令 mkfs.ext4 mkfs.xfs
+16、源码包安装
+解压	tar
+配置	./configure
+编译	make
+安装	make install
+17、tar命令  
+c:创建归档 x：释放归档 f：指定归档文件名称 t：文件清单  C：指定释放位置
+-Z .gz   -j.bz2  -J.XZ
+
+18、zip，unzip 把压缩文件解压到指定的目录
+unzip -r   路径   压缩包名字
+19、
+（1）cmd1 && cmd2  与
+（2）cmd1 || cmd2  或 
+（3）cmd1 ; cmd2   执行前执行后 两者无关
+20、vim编辑器的三种模式及快捷键 命令  插入 末行  
+21、rsync (远程数据同步工具）
+rsync
+ -n:测试同步过程,不做实际修改
+ -delete:删除目标文件夹内多余的文档
+ -a:归档模式,相当于-rlptgoD
+ -v:显示详细操作信息
+ -z:传输过程中启用压缩/解压
+ sync+SSH远程同步
+
+  rsync  /本地路径/源文件/    用户名@对方的IP地址:/目标路径
+
+  rsync   用户名@对方的IP地址:/目标路径       /本地路径/路径/ 
+22、last,w,who,last
+last登陆用户信息
+w 查登陆当前系统的用户信息，以及在座什么操作   后面3个数字为系统平均负载
+who 简单显示当前登陆系统用户信息，包含使用终端登陆
+23、虚拟主机分类 基于端口   域名  IP
+24、httpd配置文件 
+80 /var/www/html
+25、RAID 的含义及优势？ RAID0 、 RAID1 、5 RAID5 分别指什么、各自的特点？
+参考答案
+1）RAID：廉价冗余磁盘阵列，指通过硬件/软件技术将多个较小/低速的磁盘整合成一个大磁盘使用的一种存储技
+术，其不仅可存储数据，还可以实现一定程度的冗余保障，具有“速度快、安全性高”的优势。
+2）RAID0、RAID1、RAID5 的含义及特点如下：
+RAID0：条带模式，由两个或两个以上的磁盘组成，同一份文档分散在不同的磁盘中，并行写入，提高写效率。
+RAID1：镜像模式，由至少两个磁盘组成，同一份文件被分别写入到不同的磁盘中，每份磁盘数据一样，实现容错，
+提高读效率。
+RAID5：分布式奇偶校验的独立磁盘模式，结合 RAID0 和 RAID1 的好处，同时避免它们的缺点。由至少 3 块以上大
+小相同的磁盘组成，实现冗余。
+26、进程管理 
+ps -aux 
+top
+27、关于Linux系统的常见目录 
+/bin 存放二进制可执行文件 常用命令一般都放在这里
+/etc 存放系统管理 和配置文件
+/home 存放所有用户文件的根目录i
+/usr 存放系统应用程序 
+/root 超级用户的主目录
+/sbin 存放二进制可执行文件 只有ROOT才能访问 这里存放的是系统管理员 
+28、字符串截取，掐头去尾
+29、重中之重：PPT和第一次月考
